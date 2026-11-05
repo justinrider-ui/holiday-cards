@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holiday Card Maker | Cub Scout Pack 369</title>
+<meta name="description" content="Fill in the blanks, print, fold, and decorate a holiday card for a service member — Cub Scout Pack 369 and the Holiday Cards for Our Military Challenge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#003DA5; --blue-dk:#00297A; --gold:#FFD700; --gold-dk:#D4A800;
+    --ink:#16202E; --muted:#556070; --bg:#F5F2EA; --line:#DDD6C6;
+    --soft:#EEF3FB; --warn:#B42318; --warn-bg:#FEF0EE;
+    --hand:'Patrick Hand','Comic Sans MS','Chalkboard SE',cursive;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:Poppins,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+  a{color:var(--blue)}
+  button{font:inherit}
+
+  /* ---------- header + hero ---------- */
+  .site{background:var(--blue);color:#fff}
+  .site .inner{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+  .brand span{color:var(--gold)}
+  .site a{color:#fff;font-size:14px;text-decoration:none;opacity:.9}
+  .site a:hover{opacity:1;text-decoration:underline}
+  .hero{max-width:1180px;margin:0 auto;padding:28px 16px 4px}
+  h1{font-size:clamp(28px,4.6vw,44px);line-height:1.1;margin:0 0 10px;color:var(--blue)}
+  .lead{font-size:18px;max-width:760px;margin:0;color:#2A3442}
+  .steps{display:flex;gap:10px;flex-wrap:wrap;list-style:none;padding:0;margin:18px 0 0}
+  .steps li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 16px 6px 6px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+  .steps b,.num{background:var(--gold);color:var(--blue-dk);width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;font-size:14px;flex:none}
+  .frame-banner{max-width:1180px;margin:12px auto 0;padding:0 16px}
+  .frame-banner p{margin:0;background:#FFF7D1;border:1px solid #EBD67A;border-radius:12px;padding:10px 14px;font-size:15px}
+
+  /* ---------- layout ---------- */
+  .layout{max-width:1180px;margin:0 auto;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);gap:24px;align-items:start}
+  .box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+  .box h2{font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:10px;color:var(--blue);line-height:1.25}
+  .hint{color:var(--muted);font-size:15px;margin:0 0 6px}
+  .fw{margin-top:14px}
+  .lbl{display:block;font-weight:600;margin:0 0 6px}
+  .lbl small{font-weight:400;color:var(--muted)}
+  input[type=text],select,textarea{width:100%;font:inherit;font-size:18px;padding:11px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
+  select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 52%,calc(100% - 14px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,61,165,.16)}
+  .bad{border-color:var(--warn)!important;background:var(--warn-bg)!important}
+  .warn{color:var(--warn);font-size:14px;font-weight:600;margin:6px 0 0}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:560px){.two{grid-template-columns:1fr}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip{position:relative}
+  .chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+  .chip span{display:inline-block;padding:8px 14px;border:2px solid var(--line);border-radius:999px;font-weight:600;font-size:15px;background:#fff;cursor:pointer;user-select:none}
+  .chip input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+  .chip input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+
+  .prompt{padding:14px 0 2px;border-top:1px dashed var(--line);margin-top:12px}
+  .starter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--hand);font-size:23px;line-height:1.15;margin-bottom:6px;color:var(--ink)}
+  .fav{font-family:Poppins,sans-serif;font-size:12px;font-weight:600;background:#FFF4B8;color:#6B5300;border-radius:999px;padding:2px 9px}
+  .row{display:flex;gap:8px}
+  .prompt input,textarea{font-family:var(--hand);font-size:22px;padding:8px 14px}
+  .idea{flex:none;border:2px solid #C9D6EE;background:var(--soft);color:var(--blue);font-weight:600;font-size:14px;border-radius:12px;padding:0 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px}
+  .idea:hover{border-color:var(--blue)}
+  .idea svg{width:16px;height:16px}
+  textarea{min-height:110px;resize:vertical;line-height:1.3}
+  .under{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .count{font-size:13px;color:var(--muted)}
+
+  /* ---------- preview ---------- */
+  .preview{position:sticky;top:16px}
+  .pv-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+  .pv-head h2{margin:0}
+  .pv-head span{font-size:13px;color:var(--muted)}
+  .scaler{position:relative;width:100%;overflow:hidden;border-radius:6px;box-shadow:0 1px 2px rgba(16,32,64,.12),0 12px 30px rgba(16,32,64,.16);background:#fff}
+  .pv-note{font-size:14px;color:var(--muted);margin:10px 0 0}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:5px;margin-top:16px}
+  .seg label{position:relative}
+  .seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+  .seg span{display:block;text-align:center;padding:9px 6px;border-radius:10px;font-weight:600;font-size:14px;line-height:1.25;cursor:pointer}
+  .seg input:checked+span{background:#fff;color:var(--blue);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .seg input:focus-visible+span{outline:3px solid var(--gold)}
+  .check{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:15px;cursor:pointer}
+  .check input{width:20px;height:20px;accent-color:var(--blue)}
+  .print{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;border:0;border-radius:14px;padding:15px;background:var(--gold);color:var(--blue-dk);font-weight:700;font-size:19px;cursor:pointer;box-shadow:0 2px 0 var(--gold-dk)}
+  .print:hover{filter:brightness(1.04)}
+  .print:active{transform:translateY(1px);box-shadow:none}
+  .print svg{width:22px;height:22px}
+  .msg{color:var(--warn);font-weight:600;font-size:15px;margin:10px 0 0;min-height:0}
+  .fold-how{font-size:14px;color:var(--muted);margin:10px 0 0}
+  .reset{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:14px;margin-top:6px;padding:4px 0}
+
+  /* ---------- info sections ---------- */
+  .info{max-width:1180px;margin:0 auto;padding:0 16px 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .info .box{margin:0}
+  .info h2{font-size:19px}
+  .info ul{margin:8px 0 0;padding-left:20px}
+  .info li{margin:6px 0}
+  .addr{background:var(--bg);border-radius:10px;padding:10px 14px;font-size:15px;margin:8px 0;line-height:1.45}
+  footer{max-width:1180px;margin:0 auto;padding:8px 16px 40px;color:var(--muted);font-size:14px}
+
+  .jump{display:none}
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr}
+    .preview{position:static}
+    .info{grid-template-columns:1fr}
+    .jump{display:flex;position:fixed;left:16px;right:16px;bottom:14px;z-index:5;justify-content:center;align-items:center;gap:8px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border-radius:14px;padding:14px;box-shadow:0 8px 24px rgba(0,41,122,.35);transition:opacity .2s,transform .2s}
+    .jump.hide{opacity:0;transform:translateY(20px);pointer-events:none}
+    footer{padding-bottom:96px}
+  }
+
+  /* ---------- the printed card (inches = true print size) ---------- */
+  .card{position:absolute;top:0;left:0;width:8.5in;height:11in;transform-origin:0 0;background:#fff;color:#1A2230;font-family:var(--hand);overflow:hidden}
+  .pnl{position:absolute;left:0;width:8.5in;height:5.5in}
+  .pnl.top{top:0}
+  .pnl.bot{top:5.5in}
+  .frm{position:absolute;inset:.3in;border:2px solid #003DA5;border-radius:.18in}
+  .tick{position:absolute;top:5.5in;width:.22in;border-top:1.5px dashed #A8B2C2}
+  .tick.l{left:.06in}.tick.r{right:.06in}
+  .deco{position:absolute;pointer-events:none}
+  .top-in{position:absolute;inset:.5in .6in .5in;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .top-in.nodraw{justify-content:center}
+  .greet{font-family:Poppins,sans-serif;font-weight:700;font-size:54px;line-height:1.05;color:#003DA5;letter-spacing:-.01em;margin-top:.1in}
+  .nodraw .greet{font-size:64px;margin-top:0}
+  .from{font-size:24px;color:#3A4658;margin-top:8px}
+  .draw{flex:1;width:100%;margin-top:.2in;border:2px dashed #BAC4D4;border-radius:.16in;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;color:#A5B0C0;font-size:18px}
+  .letter{position:absolute;inset:.5in .62in .46in;overflow:hidden;font-size:22px;line-height:1.36}
+  .letter p{margin:0 0 .45em}
+  .dear{font-size:1.22em;margin-bottom:.3em!important}
+  .ph{color:#9AA5B5}
+  .sign{text-align:right;line-height:1.2;margin-top:.2em}
+  .sign .nm{font-size:1.3em}
+  .sign .meta{font-size:.8em;color:#46536A}
+  .sigline{display:inline-block;width:2.2in;border-bottom:1.5px solid #8E9AAD;height:1.05em}
+  /* handwriting version */
+  .hw{font-size:21px;line-height:1}
+  .hwl{display:flex;align-items:flex-end;gap:8px;height:.37in;white-space:nowrap}
+  .hwl i{flex:1;border-bottom:1.5px solid #9AA6B8;margin-bottom:4px}
+  .hw .dear{font-size:25px;height:.42in;display:flex;align-items:flex-end;margin:0!important}
+  .hwsign{display:flex;justify-content:flex-end;margin-top:.12in}
+  .hwsign .col{width:3.3in}
+  .hwsign .hwl{height:.32in}
+  .hwsign .meta{font-size:16px;color:#46536A;margin-top:5px;white-space:nowrap}
+
+  #print-root{display:none}
+
+  @page{size:letter portrait;margin:0}
+  @media print{
+    html,body{background:#fff!important;margin:0!important;padding:0!important}
+    body>*:not(#print-root){display:none!important}
+    #print-root{display:block!important;position:relative;width:8.5in;height:10.98in;overflow:hidden}
+    #print-root .card{transform:none!important}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="inner">
+    <div class="brand">Cub Scout Pack <span>369</span></div>
+    <a href="https://www.pack369.com">&larr; Back to pack369.com</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Write a Holiday Card for a Warrior</h1>
+  <p class="lead">Couldn't make it to card night? You can still join in! Fill in the blanks, print your card, and decorate the front. Your card goes to a service member through the <a href="https://militaryholidaycardchallenge.com/" target="_blank" rel="noopener">Holiday Cards for Our Military Challenge</a>, which is based right here in New Hampshire.</p>
+  <ol class="steps">
+    <li><b>1</b>Fill in the blanks</li>
+    <li><b>2</b>Print &amp; fold</li>
+    <li><b>3</b>Decorate &amp; turn it in</li>
+  </ol>
+</section>
+
+<div class="frame-banner" id="frameBanner" hidden>
+  <p>Printing works best with this page in its own tab. <a id="frameLink" href="#" target="_blank" rel="noopener">Open the card maker in a new tab &rarr;</a></p>
+</div>
+
+<div class="layout">
+  <form id="f" autocomplete="off" onsubmit="return false">
+
+    <div class="box">
+      <h2><span class="num">1</span>About you</h2>
+      <p class="hint">The Challenge asks for your <strong>first name only</strong> and your town. Little Scouts: tell a grown-up what to type, then draw the picture yourself!</p>
+      <div class="two">
+        <div class="fw">
+          <label class="lbl" for="f-name">First name</label>
+          <input type="text" id="f-name" maxlength="20" placeholder="First name only" autocapitalize="words" spellcheck="false">
+          <p class="warn" hidden></p>
+        </div>
+        <div class="fw">
+          <label class="lbl" for="f-den">I am a&hellip;</label>
+          <select id="f-den">
+            <option value="">Choose one</option>
+            <option value="lion">Lion Scout (K)</option>
+            <option value="tiger">Tiger Scout (1st grade)</option>
+            <option value="wolf">Wolf Scout (2nd grade)</option>
+            <option value="bear">Bear Scout (3rd grade)</option>
+            <option value="webelos">Webelos Scout (4th grade)</option>
+            <option value="aol">Arrow of Light Scout (5th grade)</option>
+            <option value="family">Brother, sister, or family member</option>
+            <option value="leader">Scout leader</option>
+          </select>
+        </div>
+      </div>
+      <div class="two">
+        <div class="fw">
+          <label class="lbl" for="f-town">Town</label>
+          <select id="f-town">
+            <option value="Moultonborough">Moultonborough</option>
+            <option value="Sandwich">Sandwich</option>
+            <option value="Tamworth">Tamworth</option>
+            <option value="other">Somewhere else&hellip;</option>
+          </select>
+        </div>
+        <div class="fw" id="otherWrap" hidden>
+          <label class="lbl" for="f-other">Town name <small>(New Hampshire)</small></label>
+          <input type="text" id="f-other" maxlength="28" placeholder="Your town" autocapitalize="words">
+          <p class="warn" hidden></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2><span class="num">2</span>Pick your greeting</h2>
+      <p class="hint">This goes in big letters at the top of your card.</p>
+      <div class="chips" id="greetChips"></div>
+    </div>
+
+    <div class="box">
+      <h2><span class="num">3</span>Fill in the blanks</h2>
+      <p class="hint">Fill in as many as you like and skip the rest. Stuck? Tap <strong>Idea</strong>. Troops say the personal parts, like what your family does and what you love, are their favorite.</p>
+      <div id="prompts"></div>
+    </div>
+
+    <div class="box">
+      <h2><span class="num">4</span>Anything else?</h2>
+      <p class="hint">Tell a joke, share something about you, or say it in your own words. (Skip questions, since they can't write back.)</p>
+      <div class="fw">
+        <label class="lbl" for="f-free">My own note <small>(optional)</small></label>
+        <textarea id="f-free" maxlength="300" placeholder="Type anything you want to say!" autocapitalize="sentences"></textarea>
+        <p class="warn" hidden></p>
+        <div class="under">
+          <button type="button" class="idea" id="jokeBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>Add a joke</button>
+          <span class="count" id="freeCount">0 / 300</span>
+        </div>
+      </div>
+      <div class="fw">
+        <label class="lbl">Sign off with</label>
+        <div class="chips" id="signChips"></div>
+      </div>
+    </div>
+  </form>
+
+  <aside class="preview" id="preview">
+    <div class="box">
+      <div class="pv-head"><h2>Your card</h2><span>inside view</span></div>
+      <div class="scaler" id="scaler">
+        <div class="card" id="card">
+          <div class="pnl top">
+            <div class="frm"></div>
+            <div class="deco-wrap"></div>
+            <div class="top-in">
+              <div class="greet"></div>
+              <div class="from"></div>
+              <div class="draw">Draw a picture for your Warrior here!</div>
+            </div>
+          </div>
+          <div class="tick l"></div><div class="tick r"></div>
+          <div class="pnl bot">
+            <div class="frm"></div>
+            <div class="letter"></div>
+          </div>
+        </div>
+      </div>
+      <p class="pv-note">This is the inside of your card. The outside stays blank so you can decorate the front.</p>
+      <p class="msg" id="fitWarn" hidden>Your card is getting too long to fit. Try shortening your note.</p>
+
+      <div class="seg" role="radiogroup" aria-label="How do you want to print?">
+        <label><input type="radio" name="mode" value="typed" checked><span>Print my typed words</span></label>
+        <label><input type="radio" name="mode" value="hand"><span>Print lines to write by hand</span></label>
+      </div>
+      <label class="check"><input type="checkbox" id="f-draw" checked>Leave a space to draw a picture</label>
+
+      <button type="button" class="print" id="printBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>Print my card</button>
+      <p class="msg" id="msg" role="alert"></p>
+      <p class="fold-how">Prints on one regular sheet of paper. Fold it in half, <strong>top to bottom, with the words inside</strong>. Then decorate the front!</p>
+      <button type="button" class="reset" id="resetBtn">Start over</button>
+    </div>
+  </aside>
+</div>
+
+<section class="info">
+  <div class="box">
+    <h2>Grown-up check</h2>
+    <ul>
+      <li><strong>First name and town only.</strong> No last names, addresses, emails, or social media.</li>
+      <li><strong>Kind and respectful.</strong> Skip politics or anything that might upset someone far from home.</li>
+      <li><strong>Holiday cards only.</strong> The Challenge does not accept Veterans Day cards.</li>
+      <li><strong>No envelope on the card.</strong> No return-address labels, either.</li>
+    </ul>
+  </div>
+
+  <!-- ===== EDIT ME: how families turn cards in ===== -->
+  <div class="box">
+    <h2>Turn it in</h2>
+    <p style="margin:8px 0 0"><strong>Bring it to the Pack:</strong> our den meeting on <strong>Thursday, November 12 at 6:30 PM</strong>, Moultonborough Function Hall. We'll send all of Pack 369's cards together.</p>
+    <p style="margin:12px 0 0"><strong>Or mail it yourself</strong> to:</p>
+    <div class="addr">Laura Landerman-Garber<br>Holiday Card Challenge<br>5 Hutchings Drive #103<br>Hollis, NH 03049</div>
+    <p class="hint" style="margin:0">The Challenge's goal is to have cards in by November 15.</p>
+  </div>
+  <!-- ===== /EDIT ME ===== -->
+
+  <div class="box">
+    <h2>No printer?</h2>
+    <p style="margin:8px 0 0">No problem. Use any blank card or a sheet of paper folded in half (no bigger than 8&frac12;&times;11 folded), and copy your words in your own handwriting. Handwritten cards are great!</p>
+    <p class="hint" style="margin:10px 0 0">Start with <strong>"Dear Warrior,"</strong> and sign with your first name, town, and "Cub Scout Pack 369."</p>
+  </div>
+</section>
+
+<footer>
+  Card guidelines come from the <a href="https://militaryholidaycardchallenge.com/how-to-send/" target="_blank" rel="noopener">Holiday Cards for Our Military Challenge</a>. Nothing you type on this page is saved or sent anywhere; it stays on your device. Questions? <a href="mailto:Cubmaster_J@pack369.com">Cubmaster_J@pack369.com</a>
+</footer>
+
+<a href="#preview" class="jump" id="jump">See my card &amp; print &darr;</a>
+
+<div id="print-root" aria-hidden="true"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- content ---------- */
+  var GREETINGS = ["Happy Holidays!","Season's Greetings!","Merry Christmas!","Happy Hanukkah!","Happy New Year!","Thank You!"];
+  var SIGNOFFS  = ["Your friend,","With thanks,","Sincerely,","Your pal,","Happy holidays from,"];
+
+  var DENS = {
+    "":      {intro:"", sig:"Cub Scout Pack 369"},
+    lion:    {intro:" and I am a Lion Scout in Pack 369", sig:"Lion Scout, Pack 369"},
+    tiger:   {intro:" and I am a Tiger Scout in Pack 369", sig:"Tiger Scout, Pack 369"},
+    wolf:    {intro:" and I am a Wolf Scout in Pack 369", sig:"Wolf Scout, Pack 369"},
+    bear:    {intro:" and I am a Bear Scout in Pack 369", sig:"Bear Scout, Pack 369"},
+    webelos: {intro:" and I am a Webelos Scout in Pack 369", sig:"Webelos Scout, Pack 369"},
+    aol:     {intro:" and I am an Arrow of Light Scout in Pack 369", sig:"Arrow of Light, Pack 369"},
+    family:  {intro:" and my family is part of Cub Scout Pack 369", sig:"Cub Scout Pack 369 family"},
+    leader:  {intro:" and I am a leader in Cub Scout Pack 369", sig:"Leader, Cub Scout Pack 369"}
+  };
+
+  var PROMPTS = [
+    {id:"thanks", starter:"Thank you for", ph:"keeping our country safe",
+      ideas:["keeping our country safe","being so brave","serving so far away from home","protecting our freedom","working so hard for all of us"]},
+    {id:"tradition", starter:"During the holidays, my family likes to", ph:"go sledding and drink hot cocoa", fav:true,
+      ideas:["go sledding and drink hot cocoa","bake cookies with my grandma","drive around and look at the lights","go ice skating on the lake","play board games by the fire","light candles and eat a big dinner"]},
+    {id:"treat", starter:"My favorite holiday treat is", ph:"gingerbread cookies",
+      ideas:["gingerbread cookies","hot chocolate with marshmallows","pumpkin pie","candy canes","latkes with applesauce","my mom's cinnamon rolls"]},
+    {id:"scouts", starter:"This year in Cub Scouts, I", ph:"raced a boat in the Raingutter Regatta",
+      ideas:["raced a boat in the Raingutter Regatta","went camping at Spooktacular","learned how to tie knots","collected food for families who need it","went on a hike with my den","learned how to stay safe around a campfire"]},
+    {id:"winter", starter:"Where I live in New Hampshire, winter means", ph:"ice fishing on the lake",
+      ideas:["ice fishing on the lake","building giant snow forts","sledding down big hills","snowball fights with my friends","LOTS of shoveling","snowshoeing in the woods"]},
+    {id:"grow", starter:"When I grow up, I want to", ph:"be a pilot",
+      ideas:["be a pilot","be a firefighter","build robots","be a veterinarian","play hockey in the NHL","serve my country like you"]},
+    {id:"wish", starter:"My holiday wish for you is", ph:"a video call with your family",
+      ideas:["a video call with your family","a giant plate of cookies","a happy and peaceful holiday","lots of laughs with your friends","a little bit of snow"]}
+  ];
+
+  var JOKES = [
+    "Here's a joke: What do snowmen eat for breakfast? Frosted Flakes!",
+    "Here's a joke: What kind of ball doesn't bounce? A snowball!",
+    "Here's a joke: How does a snowman get to work? By icicle!",
+    "Here's a joke: What do you call a reindeer with no eyes? No eye-deer!",
+    "Here's a joke: Why was the snowman looking through the carrots? He was picking his nose!",
+    "Here's a joke: What falls in winter but never gets hurt? Snow!"
+  ];
+
+  var CONTACT_RE = /@|https?:\/\/|www\.|\.(com|net|org|gov|edu|us|io)\b|\d{3}[-.\s)]*\d{3}[-.\s]*\d{4}|\b\d{1,5}\s+[a-z]+\s+(st|street|rd|road|ave|avenue|ln|lane|dr|drive|way|hwy|route|rte)\b/i;
+  var CONTACT_MSG = "Please leave out emails, phone numbers, street addresses, and websites.";
+
+  var BULB = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>';
+
+  /* ---------- helpers ---------- */
+  function $(s,r){return (r||document).querySelector(s);}
+  function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function clean(s){return (s||"").replace(/\s+/g," ").trim();}
+  function endP(v){return /[.!?…]["'”’)]*$/.test(v) ? "" : ".";}
+  function sentence(starter,v){return v ? starter+" "+v+endP(v) : "";}
+  function pick(list,not){var opts=list.filter(function(x){return x!==not;}); return opts[Math.floor(Math.random()*opts.length)];}
+
+  /* ---------- build form ---------- */
+  function chips(el,name,list,first){
+    el.innerHTML = list.map(function(g,i){
+      return '<label class="chip"><input type="radio" name="'+name+'" value="'+esc(g)+'"'+(i===0?" checked":"")+'><span>'+esc(g)+'</span></label>';
+    }).join("");
+  }
+  chips($("#greetChips"),"greet",GREETINGS);
+  chips($("#signChips"),"signoff",SIGNOFFS);
+
+  $("#prompts").innerHTML = PROMPTS.map(function(p,i){
+    return '<div class="prompt fw"'+(i===0?' style="border-top:0;margin-top:4px;padding-top:4px"':'')+'>'+
+      '<label class="starter" for="f-'+p.id+'">'+esc(p.starter)+'&hellip;'+(p.fav?' <span class="fav">Troops&rsquo; favorite</span>':'')+'</label>'+
+      '<div class="row"><input type="text" id="f-'+p.id+'" maxlength="90" placeholder="like &ldquo;'+esc(p.ph)+'&rdquo;" autocapitalize="off" spellcheck="true">'+
+      '<button type="button" class="idea" data-for="'+p.id+'" aria-label="Give me an idea for: '+esc(p.starter)+'">'+BULB+'Idea</button></div>'+
+      '<p class="warn" hidden></p></div>';
+  }).join("");
+
+  /* ---------- decorations (inline SVG so they print) ---------- */
+  function flake(x,y,size,color){
+    var arms="";
+    for(var i=0;i<6;i++){
+      arms+='<g transform="rotate('+(i*60)+')"><line x1="0" y1="0" x2="0" y2="-10"/><line x1="0" y1="-6" x2="-3.2" y2="-8.6"/><line x1="0" y1="-6" x2="3.2" y2="-8.6"/></g>';
+    }
+    return '<svg class="deco" style="left:'+x+'in;top:'+y+'in;width:'+size+'in;height:'+size+'in" viewBox="-12 -12 24 24" fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linecap="round">'+arms+'</svg>';
+  }
+  function star(x,y,size,color){
+    return '<svg class="deco" style="left:'+x+'in;top:'+y+'in;width:'+size+'in;height:'+size+'in" viewBox="0 0 24 24"><path fill="'+color+'" d="M12 1.8l2.9 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.3 5.7 21l1.6-7.1L1.9 9.1l7.2-.7z"/></svg>';
+  }
+  var GOLD="#EBBE00", BLUE="#003DA5", SKY="#7FA3DA";
+  var DECO_DRAW = flake(.52,.5,.62,BLUE)+star(1.24,.42,.3,GOLD)+flake(.8,1.16,.32,SKY)+
+                  flake(7.36,.5,.62,BLUE)+star(6.96,.42,.3,GOLD)+flake(7.38,1.16,.32,SKY);
+  var DECO_FULL = flake(.6,.6,.8,BLUE)+star(1.5,.55,.36,GOLD)+flake(.9,1.55,.42,SKY)+star(.62,3.9,.3,GOLD)+flake(1.25,4.1,.55,BLUE)+
+                  flake(7.1,.6,.8,BLUE)+star(6.64,.55,.36,GOLD)+flake(7.16,1.55,.42,SKY)+star(7.58,3.9,.3,GOLD)+flake(6.72,4.1,.55,BLUE);
+
+  /* ---------- state ---------- */
+  var card=$("#card"), scaler=$("#scaler"), printRoot=$("#print-root");
+  var tooLong=false;
+
+  function data(){
+    var townSel=$("#f-town").value;
+    var d={
+      name: clean($("#f-name").value),
+      den: $("#f-den").value,
+      town: townSel==="other" ? clean($("#f-other").value) : townSel,
+      greet: ($('input[name="greet"]:checked')||{}).value || GREETINGS[0],
+      signoff: ($('input[name="signoff"]:checked')||{}).value || SIGNOFFS[0],
+      free: ($("#f-free").value||"").trim(),
+      draw: $("#f-draw").checked,
+      mode: ($('input[name="mode"]:checked')||{}).value || "typed"
+    };
+    PROMPTS.forEach(function(p){d[p.id]=clean($("#f-"+p.id).value);});
+    return d;
+  }
+
+  function hasWords(d){
+    return !!(d.name || d.free || PROMPTS.some(function(p){return d[p.id];}));
+  }
+
+  function signHTML(d){
+    var den=DENS[d.den]||DENS[""];
+    var nm = d.name ? '<span class="nm">'+esc(d.name)+'</span>' : '<span class="sigline"></span>';
+    var where = (d.town ? esc(d.town) : "________")+", NH";
+    return '<div class="sign">'+esc(d.signoff)+'<br>'+nm+'<br><span class="meta">'+esc(den.sig)+' &middot; '+where+'</span></div>';
+  }
+
+  function paragraphs(d){
+    var den=DENS[d.den]||DENS[""];
+    var intro = d.name ? "My name is "+d.name+den.intro+"." : "";
+    var paras = [
+      [intro, sentence("Thank you for",d.thanks)],
+      ["tradition","treat","scouts","winter","grow"].map(function(id){
+        var p=PROMPTS.filter(function(x){return x.id===id;})[0]; return sentence(p.starter,d[id]);
+      }),
+      [sentence("My holiday wish for you is",d.wish)]
+    ].map(function(a){return a.filter(Boolean).join(" ");}).filter(Boolean);
+    if(d.free){paras.push(d.free);}
+    return paras;
+  }
+
+  function typedHTML(d){
+    if(!hasWords(d)){
+      return '<p class="dear">Dear Warrior,</p><p class="ph">Start filling in the blanks and your letter will show up right here!</p>';
+    }
+    var html='<p class="dear">Dear Warrior,</p>';
+    paragraphs(d).forEach(function(t){html+='<p>'+esc(t).replace(/\n+/g,"<br>")+'</p>';});
+    return html+signHTML(d);
+  }
+
+
+  function handHTML(d){
+    var den=DENS[d.den]||DENS[""];
+    function L(t){return '<div class="hwl">'+(t?'<span>'+esc(t)+'</span>':'')+'<i></i></div>';}
+    var nameRow = d.name ? '<div class="hwl" style="font-size:25px">'+esc(d.name)+'</div>' : L("");
+    var where = (d.town ? esc(d.town) : "____________")+", NH";
+    return '<div class="hw">'+
+      '<p class="dear">Dear Warrior,</p>'+
+      L("Thank you for")+L("")+
+      L("During the holidays, my family likes to")+L("")+
+      L("In Cub Scouts, I like to")+L("")+
+      L("My holiday wish for you is")+L("")+
+      '<div class="hwsign"><div class="col"><div class="hwl">'+esc(d.signoff)+'</div>'+nameRow+
+      '<div class="meta">'+esc(den.sig)+' &middot; '+where+'</div></div></div>'+
+    '</div>';
+  }
+
+  function fit(d){
+    var L=$(".letter",card);
+    if(d.mode!=="typed"){L.style.fontSize="";tooLong=L.scrollHeight>L.clientHeight+1;return;}
+    var s=26; L.style.fontSize=s+"px";
+    while(L.scrollHeight>L.clientHeight+1 && s>13){s-=.5;L.style.fontSize=s+"px";}
+    tooLong = L.scrollHeight>L.clientHeight+1;
+  }
+
+  function render(){
+    var d=data();
+    var topIn=$(".top-in",card);
+    $(".greet",card).textContent=d.greet;
+    var who = d.den==="family" ? "a Cub Scout family" : (d.den==="leader" ? "Cub Scout Pack 369" : "a Cub Scout");
+    $(".from",card).textContent="from "+who+" in "+(d.town ? d.town+", " : "")+"New Hampshire";
+    $(".draw",card).style.display=d.draw?"":"none";
+    topIn.classList.toggle("nodraw",!d.draw);
+    $(".deco-wrap",card).innerHTML = d.draw ? DECO_DRAW : DECO_FULL;
+    $(".letter",card).innerHTML = d.mode==="typed" ? typedHTML(d) : handHTML(d);
+    fit(d);
+    $("#fitWarn").hidden=!tooLong;
+    var c=card.cloneNode(true); c.removeAttribute("id"); c.style.transform="none";
+    printRoot.innerHTML=""; printRoot.appendChild(c);
+    $("#freeCount").textContent=$("#f-free").value.length+" / 300";
+  }
+
+  /* ---------- preview scaling ---------- */
+  function scale(){
+    var w=scaler.clientWidth, s=w/816;
+    card.style.transform="scale("+s+")";
+    scaler.style.height=Math.round(1056*s)+"px";
+  }
+  if(window.ResizeObserver){new ResizeObserver(scale).observe(scaler);} else {window.addEventListener("resize",scale);}
+  scale();
+
+  /* ---------- safety checks ---------- */
+  function setWarn(el,msg){
+    var w=el.closest(".fw").querySelector(".warn");
+    el.classList.toggle("bad",!!msg);
+    if(w){w.textContent=msg||"";w.hidden=!msg;}
+  }
+  function check(){
+    var n=$("#f-name"), nv=n.value.trim();
+    setWarn(n, /\s/.test(nv) ? "Just your first name, please. No last name." : (CONTACT_RE.test(nv)?CONTACT_MSG:""));
+    var ot=$("#f-other"); setWarn(ot, CONTACT_RE.test(ot.value)?CONTACT_MSG:"");
+    PROMPTS.forEach(function(p){var el=$("#f-"+p.id); setWarn(el, CONTACT_RE.test(el.value)?CONTACT_MSG:"");});
+    var fr=$("#f-free"); setWarn(fr, CONTACT_RE.test(fr.value)?CONTACT_MSG:"");
+    return $$(".bad");
+  }
+
+  /* ---------- events ---------- */
+  var form=$("#f");
+  form.addEventListener("input",function(){check();render();$("#msg").textContent="";});
+  form.addEventListener("change",function(){
+    $("#otherWrap").hidden = $("#f-town").value!=="other";
+    check();render();
+  });
+  $$('input[name="mode"]').concat([$("#f-draw")]).forEach(function(el){el.addEventListener("change",render);});
+
+  $("#prompts").addEventListener("click",function(e){
+    var b=e.target.closest(".idea"); if(!b) return;
+    var p=PROMPTS.filter(function(x){return x.id===b.dataset.for;})[0];
+    var inp=$("#f-"+p.id); inp.value=pick(p.ideas,inp.value);
+    inp.dispatchEvent(new Event("input",{bubbles:true}));
+  });
+  $("#jokeBtn").addEventListener("click",function(){
+    var t=$("#f-free"), cur=t.value;
+    var j=pick(JOKES.filter(function(x){return cur.indexOf(x)<0;}),null) || JOKES[0];
+    var cleaned=cur; JOKES.forEach(function(x){cleaned=cleaned.replace(x,"").trim();});
+    var next=(cleaned?cleaned+" ":"")+j;
+    if(next.length>300){next=next.slice(0,300);}
+    t.value=next; t.dispatchEvent(new Event("input",{bubbles:true}));
+  });
+
+  /* pre-flight before printing; returns card data or null */
+  function ready(needWords,emptyMsg){
+    var d=data(); render();
+    var bad=check(), msg=$("#msg");
+    if(bad.length){msg.textContent="Fix the part marked in red first.";bad[0].scrollIntoView({block:"center",behavior:"smooth"});bad[0].focus({preventScroll:true});return null;}
+    if(needWords && !hasWords(d)){msg.textContent=emptyMsg;return null;}
+    if(tooLong){msg.textContent="Your card is too long to fit on the page. Try shortening your note.";return null;}
+    msg.textContent="";
+    return d;
+  }
+
+  $("#printBtn").addEventListener("click",function(){
+    var d=data();
+    if(ready(d.mode==="typed","Fill in at least one blank first, or choose “Print lines to write by hand.”")) window.print();
+  });
+  window.addEventListener("beforeprint",render);
+
+  $("#resetBtn").addEventListener("click",function(){
+    if(!confirm("Clear everything and start a new card?")) return;
+    form.reset();
+    $('input[name="mode"][value="typed"]').checked=true; $("#f-draw").checked=true;
+    $("#otherWrap").hidden=true; $("#msg").textContent="";
+    check(); render(); window.scrollTo({top:0,behavior:"smooth"});
+  });
+
+  /* mobile jump button hides once the preview is on screen */
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(es){es.forEach(function(e){$("#jump").classList.toggle("hide",e.isIntersecting);});},{threshold:.15}).observe($("#preview"));
+  }
+
+  /* embedded in another page (e.g. Google Sites)? offer a new-tab link for printing */
+  try{
+    if(window.self!==window.top && /^https?:/.test(location.protocol)){
+      $("#frameLink").href=location.href; $("#frameBanner").hidden=false;
+    }
+  }catch(e){}
+
+  render();
+  if(document.fonts && document.fonts.ready){document.fonts.ready.then(render);}
+})();
+</script>
+</body>
+</html>
